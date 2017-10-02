@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.examinationsystem.R;
 
-public class Profile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.examinationsystem.ui;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     MaterialEditText etName,etPass,etPhno,etEmail;
     MaterialEditText etLoginPass,etLoginPhno;
@@ -61,39 +62,44 @@ public class Login extends AppCompatActivity {
     }
 
     private void signIn(final String phNo, final String pass) {
+        final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+        dialog.setMessage("Please wait..");
+        dialog.show();
         users.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(phNo).exists()) {
-                    if(!phNo.isEmpty()) {
+                    if (!phNo.isEmpty()) {
                         User login = dataSnapshot.child(phNo).getValue(User.class);
-                        if(login.getPass().equals(pass)) {
+                        if (login.getPass().equals(pass)) {
                             com.example.examinationsystem.constants.User.userId = login.getPhNo();
                             com.example.examinationsystem.constants.User.userName = login.getName();
                             com.example.examinationsystem.constants.User.imageUrl = login.getImageUrl();
-                            Toast.makeText(Login.this, "Login success.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            dialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Login success.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(Login.this, "Invalid password.", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Invalid password.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                } 
-                else
-                    Toast.makeText(Login.this, "User not exist.", Toast.LENGTH_SHORT).show();    
+                } else {
+                    dialog.dismiss();
+                    Toast.makeText(LoginActivity.this, "User not exist.", Toast.LENGTH_SHORT).show();
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                dialog.dismiss();
             }
         });
     }
 
     private void showSignUpDialog() {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
         builder.setTitle("Sign Up");
         builder.setMessage("Please fill the details");
         LayoutInflater inflater = this.getLayoutInflater();
@@ -122,12 +128,12 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(user.getPhNo()).exists()) {
-                            Toast.makeText(Login.this, "This phone no. is already exist.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "This phone no. is already exist.", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             users.child(user.getPhNo()).setValue(user);
-                            Toast.makeText(Login.this, "User registered.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "User registered.", Toast.LENGTH_SHORT).show();
                         }
                     }
 

@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.examinationsystem.R;
 import com.example.examinationsystem.constants.User;
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
-            Intent intent = new Intent(MainActivity.this, Profile.class);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
         }
 
@@ -112,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             ).commit();
         }
         else if(id == R.id.nav_exams) {
-            Intent intent = new Intent(MainActivity.this, Exams.class);
+            Intent intent = new Intent(MainActivity.this, SubjectsActivity.class);
             startActivity(intent);
         }
         else if(id== R.id.nav_rating) {
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity
                     rating.getTag()
             ).commit();
         } else if(id== R.id.nav_logout) {
-            Intent intent = new Intent(MainActivity.this, Login.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

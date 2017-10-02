@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context="com.example.examinationsystem.ui.Login">
+    tools:context="com.example.examinationsystem.ui.LoginActivity">
 
     <RelativeLayout
         android:layout_width="0dp"

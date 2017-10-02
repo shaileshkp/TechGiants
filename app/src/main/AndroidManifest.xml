@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.Login"
+            android:name=".ui.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.Profile" android:parentActivityName=".ui.MainActivity"/>
-        <activity android:name=".ui.Exams" android:parentActivityName=".ui.MainActivity" />
-        <activity android:name=".ui.Levels" android:parentActivityName=".ui.Exams"/>
+        <activity android:name=".ui.ProfileActivity" android:parentActivityName=".ui.MainActivity"/>
+        <activity android:name=".ui.SubjectsActivity" android:label="Subjects" android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".ui.LevelsActivity" android:parentActivityName=".ui.SubjectsActivity"/>
     </application>
 
 </manifest>
