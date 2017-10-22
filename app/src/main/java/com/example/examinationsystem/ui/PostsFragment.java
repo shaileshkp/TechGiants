@@ -26,14 +26,18 @@ import com.example.examinationsystem.viewholder.PostsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.Map;
 import java.util.UUID;
 
 import info.hoang8f.widget.FButton;
@@ -56,9 +60,12 @@ public class PostsFragment extends Fragment {
     Posts newPost;
 
     Uri saveUri;
+    String imgUri = null;
     private final int PICK_IMAGE_REQUEST = 71;
 
     DrawerLayout drawer;
+
+    String id;
 
     public PostsFragment() {
         // Required empty public constructor
@@ -140,9 +147,12 @@ public class PostsFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                newPost = new Posts(post_desc.getText().toString().trim(),imgUri);
                 if(newPost != null) {
-                    posts.push().setValue(newPost);
-                    Toast.makeText(getActivity(),"New post added",Toast.LENGTH_SHORT).show();
+                    id = getPostId();
+                    Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                    //posts.child(id).push().setValue(newPost);
+                    //Toast.makeText(getActivity(),"New post added",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -153,6 +163,31 @@ public class PostsFragment extends Fragment {
             }
         });
         alertDialgo.show();
+    }
+
+    private String getPostId() {
+        final long[] id = new long[1];
+
+        DatabaseReference reference = database.getReference();
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                id[0] = (long) dataSnapshot.child("postId").getValue();
+                long newId = id[0] - 1;
+//                Toast.makeText(getActivity(), ""+ id[0], Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+//        reference.child("postId").setValue(newId);
+
+//        Toast.makeText(getActivity(), id[0]+ "\n" +newId, Toast.LENGTH_SHORT).show();
+        return Long.toString(id[0]);
     }
 
     private void uploadImage() {
@@ -171,7 +206,7 @@ public class PostsFragment extends Fragment {
                         imageFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                newPost = new Posts(post_desc.getText().toString().trim(),uri.toString());
+                                imgUri = uri.toString();
                             }
                         });
                     }
@@ -210,8 +245,13 @@ public class PostsFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(PostsViewHolder viewHolder, Posts model, int position) {
-                viewHolder.textView.setText(model.getDesc());
-                Picasso.with(getContext()).load(model.getImgUrl()).into(viewHolder.imageView);
+                if(model.getDesc() != null && !model.getDesc().isEmpty())
+                    viewHolder.textView.setText(model.getDesc());
+
+                if(model.getImgUrl() != null && !model.getImgUrl().isEmpty())
+                    Picasso.with(getContext()).load(model.getImgUrl()).into(viewHolder.imageView);
+                else
+                    viewHolder.imageView.getLayoutParams().height=0;
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

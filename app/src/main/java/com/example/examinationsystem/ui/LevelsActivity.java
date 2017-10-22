@@ -8,19 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.examinationsystem.R;
-import com.example.examinationsystem.constants.Subject;
+import com.example.examinationsystem.constants.Common;
 import com.example.examinationsystem.interfaces.ItemClickListener;
 import com.example.examinationsystem.model.Levels;
-import com.example.examinationsystem.model.Subjects;
 import com.example.examinationsystem.viewholder.LevelsViewHolder;
-import com.example.examinationsystem.viewholder.SubjectViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class LevelsActivity extends AppCompatActivity {
     FirebaseDatabase database;
-    DatabaseReference levels;
+    Query levels;
 
     FirebaseRecyclerAdapter<Levels,LevelsViewHolder> adapter;
 
@@ -31,7 +29,7 @@ public class LevelsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
-        setTitle(Subject.subjectName);
+        setTitle(Common.subjName);
 
         recycler_levels = (RecyclerView) findViewById(R.id.list_levels);
         recycler_levels.setHasFixedSize(true);
@@ -39,7 +37,7 @@ public class LevelsActivity extends AppCompatActivity {
         recycler_levels.setLayoutManager(layoutManager);
 
         database = FirebaseDatabase.getInstance();
-        levels = database.getReference("Exams").child(Subject.subjectName).child("Levels");
+        levels = database.getReference("Levels").orderByChild("subjId").equalTo(Common.subjId);
 
         loadLevels();
     }
@@ -59,7 +57,12 @@ public class LevelsActivity extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
+                        Common.levelId = adapter.getRef(position).getKey();
+                        Intent intent = new Intent(LevelsActivity.this, StartTest.class);
+                        intent.putExtra("level",model.getLevel());
+                        intent.putExtra("desc",model.getDescription());
+                        intent.putExtra("duration",model.getDuration());
+                        startActivity(intent);
                     }
                 });
             }

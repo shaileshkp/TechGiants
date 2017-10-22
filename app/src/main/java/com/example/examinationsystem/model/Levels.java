@@ -9,14 +9,16 @@ public class Levels {
     private String level;
     private String duration;
     private String description;
+    private String subjId;
 
     public Levels() {
     }
 
-    public Levels(String level, String duration, String description) {
+    public Levels(String level, String duration, String description, String subjId) {
         this.level = level;
         this.duration = duration;
         this.description = description;
+        this.subjId = subjId;
     }
 
     public String getLevel() {
@@ -41,5 +43,13 @@ public class Levels {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSubjId() {
+        return subjId;
+    }
+
+    public void setSubjId(String subjId) {
+        this.subjId = subjId;
     }
 }

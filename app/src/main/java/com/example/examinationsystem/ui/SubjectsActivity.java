@@ -9,16 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.examinationsystem.R;
-import com.example.examinationsystem.constants.Subject;
+import com.example.examinationsystem.constants.Common;
 import com.example.examinationsystem.interfaces.ItemClickListener;
-import com.example.examinationsystem.model.Posts;
 import com.example.examinationsystem.model.Subjects;
-import com.example.examinationsystem.viewholder.PostsViewHolder;
 import com.example.examinationsystem.viewholder.SubjectViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class SubjectsActivity extends AppCompatActivity {
     FirebaseDatabase database;
@@ -40,7 +37,7 @@ public class SubjectsActivity extends AppCompatActivity {
         recycler_subjects.setLayoutManager(layoutManager);
 
         database = FirebaseDatabase.getInstance();
-        subjects = database.getReference("Exams");
+        subjects = database.getReference("Subjects");
 
         loadSubjects();
 
@@ -61,8 +58,9 @@ public class SubjectsActivity extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(SubjectsActivity.this, ""+model.getSubjectName(), Toast.LENGTH_SHORT).show();
-                        Subject.subjectName = model.getSubjectName();
+                        Common.subjId = adapter.getRef(position).getKey();
+                        Common.subjName = model.getSubjectName();
+                        Toast.makeText(SubjectsActivity.this, Common.subjName+"\n"+Common.subjId, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SubjectsActivity.this, LevelsActivity.class);
                         startActivity(intent);
                     }
