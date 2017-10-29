@@ -36,7 +36,10 @@
             android:name=".ui.StartTest"
             android:parentActivityName=".ui.LevelsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.TestActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.TestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.SubmitTestActivity"></activity>
     </application>
 
 </manifest>

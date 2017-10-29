@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.examinationsystem.ui.TestActivity">
+    <LinearLayout
+        android:id="@+id/layoutTestTop"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg"
+        android:weightSum="2"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tech Giants"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12pt"
+            android:layout_margin="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="4dp"
+            android:weightSum="2"
+            >
+            <LinearLayout
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Subject : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+                    />
+                <TextView
+                    android:id="@+id/txtSubjName"
+                    android:text="Subject Name "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:text="Level : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+                <TextView
+                    android:id="@+id/txtLevel"
+                    android:text="Level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="4dp"
+            android:weightSum="2"
+            >
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="4dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Question: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+                <TextView
+                    android:id="@+id/txtQuestionNo"
+                    android:text="question No "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Time : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:text="Time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textColor="@color/common_google_signin_btn_text_dark_pressed"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <info.hoang8f.widget.FButton
+                    android:id="@+id/btnClear"
+                    android:layout_weight="1"
+                    android:text="Clear"
+                    android:layout_margin="8dp"
+                    app:buttonColor="@color/fbutton_color_pomegranate"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp" />
+
+                <info.hoang8f.widget.FButton
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Submit"
+                    android:layout_margin="8dp"
+                    app:buttonColor="@color/fbutton_color_wisteria"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutTestTop"
+        android:layout_above="@+id/layoutNP"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Question"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textSize="8pt"
+                android:background="@color/overlayBackground"
+                android:textColor="@android:color/holo_red_dark"
+                />
+            <TextView
+                android:layout_below="@id/tq"
+                android:id="@+id/txtQuestion"
+                android:layout_margin="4dp"
+                android:textSize="7pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/demoQuestion"
+                android:textColor="@android:color/black"
+                />
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_below="@+id/txtQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp"
+                >
+                <RadioButton
+                    android:id="@+id/opt1"
+                    android:text="Option 1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/opt2"
+                    android:text="Option 2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/opt3"
+                    android:text="Option 3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/opt4"
+                    android:text="Option 4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutNP"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btnPrevious"
+            android:layout_weight="1"
+            android:text="Previous"
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:buttonColor="@color/fbutton_color_nephritis"
+            />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btnNext"
+            android:layout_weight="1"
+            android:text="Next"
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:buttonColor="@color/fbutton_color_nephritis"
+            />
+    </LinearLayout>
+</RelativeLayout>
