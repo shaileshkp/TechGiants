@@ -149,10 +149,10 @@ public class PostsFragment extends Fragment {
                 dialog.dismiss();
                 newPost = new Posts(post_desc.getText().toString().trim(),imgUri);
                 if(newPost != null) {
-                    id = getPostId();
-                    Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
-                    //posts.child(id).push().setValue(newPost);
-                    //Toast.makeText(getActivity(),"New post added",Toast.LENGTH_SHORT).show();
+//                    id = getPostId();
+//                    Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                    posts.push().setValue(newPost);
+                    Toast.makeText(getActivity(),"New post added",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -246,7 +246,7 @@ public class PostsFragment extends Fragment {
             @Override
             protected void populateViewHolder(PostsViewHolder viewHolder, Posts model, int position) {
                 if(model.getDesc() != null && !model.getDesc().isEmpty())
-                    viewHolder.textView.setText(model.getDesc());
+                    viewHolder.textDesc.setText(model.getDesc());
 
                 if(model.getImgUrl() != null && !model.getImgUrl().isEmpty())
                     Picasso.with(getContext()).load(model.getImgUrl()).into(viewHolder.imageView);

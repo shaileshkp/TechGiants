@@ -40,10 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:buttonColor="@color/colorPrimary"
-                app:shadowColor="@android:color/black"
-                app:shadowEnabled="true"
-                app:shadowHeight="5dp"
-                app:cornerRadius="5dp"
                 />
             <info.hoang8f.widget.FButton
                 android:id="@+id/post_post"
@@ -54,10 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:buttonColor="@color/colorPrimaryDark"
-                app:shadowColor="@android:color/black"
-                app:shadowEnabled="true"
-                app:shadowHeight="5dp"
-                app:cornerRadius="5dp"
                 />
         </LinearLayout>
     </LinearLayout>

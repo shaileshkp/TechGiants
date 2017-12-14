@@ -3,12 +3,14 @@ package com.example.examinationsystem.ui;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.examinationsystem.R;
@@ -24,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     MaterialEditText etName,etPass,etPhno,etEmail;
     MaterialEditText etLoginPass,etLoginPhno;
-
+    TextView lblHeading;
     Button signUp, signIn;
 
     FirebaseDatabase database;
@@ -40,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
 
         etLoginPhno = (MaterialEditText) findViewById(R.id.edtLoginPhNo);
         etLoginPass = (MaterialEditText) findViewById(R.id.edtLoginPass);
+        lblHeading = (TextView) findViewById(R.id.lblHeading);
+        Typeface pacifico = Typeface.createFromAsset(getAssets(),"fonts/Pacifico-Regular.ttf");
+        lblHeading.setTypeface(pacifico);
 
         signIn = (Button) findViewById(R.id.btn_sign_in);
         signUp = (Button) findViewById(R.id.btn_sign_up);
@@ -73,7 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (login.getPass().equals(pass)) {
                             com.example.examinationsystem.constants.User.userId = login.getPhNo();
                             com.example.examinationsystem.constants.User.userName = login.getName();
+                            com.example.examinationsystem.constants.User.userEmail = login.getEmail();
+                            com.example.examinationsystem.constants.User.pass = login.getPass();
                             com.example.examinationsystem.constants.User.imageUrl = login.getImageUrl();
+                            com.example.examinationsystem.constants.User.marks = login.getMarks();
                             dialog.dismiss();
                             Toast.makeText(LoginActivity.this, "Login success.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -122,7 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                 final User user = new User(etName.getText().toString().trim(),
                         etPhno.getText().toString().trim(),
                         etPass.getText().toString().trim(),
-                        etEmail.getText().toString().trim(),"http://findicons.com/files/icons/61/dragon_soft/256/user.png");
+                        etEmail.getText().toString().trim(),
+                        "http://findicons.com/files/icons/61/dragon_soft/256/user.png",
+                        0);
                 users.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -132,7 +142,16 @@ public class LoginActivity extends AppCompatActivity {
                         else
                         {
                             users.child(user.getPhNo()).setValue(user);
+                            com.example.examinationsystem.constants.User.userId = user.getPhNo();
+                            com.example.examinationsystem.constants.User.userName = user.getName();
+                            com.example.examinationsystem.constants.User.pass = user.getPass();
+                            com.example.examinationsystem.constants.User.userEmail = user.getEmail();
+                            com.example.examinationsystem.constants.User.imageUrl = user.getImageUrl();
+                            com.example.examinationsystem.constants.User.marks = user.getMarks();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
                             Toast.makeText(LoginActivity.this, "User registered.", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }
 

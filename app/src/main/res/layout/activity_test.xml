@@ -14,12 +14,13 @@
         android:weightSum="2"
         >
         <TextView
+            android:id="@+id/lblHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tech Giants"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="12pt"
+            android:textSize="16pt"
             android:layout_margin="8dp"
             />
         <LinearLayout

@@ -24,7 +24,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileActivity"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.SubjectsActivity"
             android:label="Subjects"
@@ -39,7 +40,8 @@
         <activity
             android:name=".ui.TestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.SubmitTestActivity"></activity>
+        <activity android:name=".ui.SubmitTestActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

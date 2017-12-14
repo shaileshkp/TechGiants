@@ -8,6 +8,7 @@
     tools:context="com.example.examinationsystem.ui.StartTest">
 
     <TextView
+        android:id="@+id/lblHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tech Giants"
@@ -71,21 +72,37 @@
             android:layout_marginRight="8dp"
             >
 
-            <Button
+            <info.hoang8f.widget.FButton
                 android:id="@+id/startTest"
                 android:text="Start Test"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-            <Button
+                android:layout_height="wrap_content"
+                app:buttonColor="@color/fbutton_color_carrot"/>
+
+            <info.hoang8f.widget.FButton
                 android:id="@+id/cancleTest"
                 android:text="Cancle Test"
+                android:layout_marginLeft="8dp"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:buttonColor="@color/fbutton_color_belize_hole"
+                />
 
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_start_test_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_margin="16dp"
+        />
 </RelativeLayout>

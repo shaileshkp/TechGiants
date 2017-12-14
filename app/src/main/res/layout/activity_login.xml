@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Phone No."
-                    android:text="9981316323"
+                    android:text=""
                     android:inputType="number"
                     android:maxLength="10"
                     android:textColor="@color/colorPrimary"
@@ -58,7 +58,7 @@
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtLoginPass"
                     android:hint="Enter Password"
-                    android:text="12345"
+                    android:text=""
                     android:inputType="textWebPassword"
                     android:textColorHint="@color/colorPrimary"
                     android:textColor="@color/colorPrimary"

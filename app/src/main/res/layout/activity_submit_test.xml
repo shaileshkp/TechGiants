@@ -7,6 +7,7 @@
     android:background="@drawable/bg"
     tools:context="com.example.examinationsystem.ui.SubmitTestActivity">
     <TextView
+        android:id="@+id/lblHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tech Giants"
@@ -34,8 +35,18 @@
             android:textSize="12pt"
             android:textColor="@color/colorPrimary"
             />
+        <TextView
+            android:id="@+id/txtMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Obtained marks"
+            android:gravity="center"
+            android:textSize="10pt"
+            android:textColor="@color/fbutton_color_alizarin"
+            />
     </LinearLayout>
     <info.hoang8f.widget.FButton
+        android:id="@+id/btnDone"
         android:layout_marginBottom="8dp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"

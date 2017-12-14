@@ -14,15 +14,18 @@ import com.example.examinationsystem.interfaces.ItemClickListener;
 
 public class PostsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public ImageView imageView;
-    public TextView textView;
+    public ImageView imageView, postUserIcon;
+    public TextView textDesc, txtUserName,txtTime;
 
     private ItemClickListener itemClickListener;
 
     public PostsViewHolder(View itemView) {
         super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.layout_posts_image);
-        textView = (TextView) itemView.findViewById(R.id.layout_posts_desc);
+        postUserIcon = (ImageView) itemView.findViewById(R.id.layout_posts_user_icon);
+        textDesc = (TextView) itemView.findViewById(R.id.layout_posts_desc);
+        txtUserName = (TextView) itemView.findViewById(R.id.layout_posts_user_name);
+        txtTime = (TextView) itemView.findViewById(R.id.postTime);
         itemView.setOnClickListener(this);
     }
 
